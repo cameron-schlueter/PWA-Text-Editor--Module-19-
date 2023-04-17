@@ -4,8 +4,16 @@
     "description": "",
     "main": "server.js",
     "scripts": {
-        "server": "nodemon server.js --ignore client"
+        "server": "nodemon server.js --ignore client",
+        "start": "concurrently \"npm run start:client\" \"npm run start:server\"",
+        "start:client": "webpack-dev-server --config client/js/webpack.config.js --open",
+        "start:server": "nodemon server/index.js",
+        "build:client": "webpack --config client//webpack.config.js",
+        "build:server": "webpack --config client/webpack.config.js",
+        "build": "npm run build:client && npm run build:server"
+      }
     },
+
     "keywords": [],
     "author": "",
     "license": "ISC",
@@ -15,4 +23,3 @@
     "devDependencies": {
         "nodemon": "^2.0.4"
     }
-}
